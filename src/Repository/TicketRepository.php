@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository\Test;
+namespace App\Repository;
 
-use App\Entity\Test\Test2;
+use App\Entity\Ticket;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Test2|null find($id, $lockMode = null, $lockVersion = null)
- * @method Test2|null findOneBy(array $criteria, array $orderBy = null)
- * @method Test2[]    findAll()
- * @method Test2[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Ticket|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Ticket|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Ticket[]    findAll()
+ * @method Ticket[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class Test2Repository extends ServiceEntityRepository
+class TicketRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Test2::class);
+        parent::__construct($registry, Ticket::class);
     }
 
     // /**
-    //  * @return Test2[] Returns an array of Test2 objects
+    //  * @return Ticket[] Returns an array of Ticket objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class Test2Repository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Test2
+    public function findOneBySomeField($value): ?Ticket
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')
