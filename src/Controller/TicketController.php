@@ -1,21 +1,29 @@
 <?php
-// src/Controller/DefaultController.php
+
 namespace App\Controller;
 
 
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\TicketType;
 use App\Entity\Ticket;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class DefaultController extends Controller
+class TicketController extends AbstractController
 {
+	/*
+	private $session;
+	public function __construct(SessionInterface $session) {
+		$this->session = $session;
+	}
+	*/
 	/**
-    * @Route("/", name="homepage")
+    * @Route("/info-ticket", name="ticket")
     */
-    public function zawarudo(Request $request)
+    public function ticket(Request $request, SessionInterface $session)
     {
+    	dump($session->get('booking'));
         $ticket = new Ticket();
         $ticketform = $this->createForm(TicketType::class, $ticket);
 
@@ -25,7 +33,7 @@ class DefaultController extends Controller
         	dump($ticket);
         }
 
-        return $this->render('test.html.twig', array(
+        return $this->render('ticket/ticket.html.twig', array(
             'form' => $ticketform->createView(),
         ));
 

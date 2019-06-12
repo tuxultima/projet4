@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,10 +22,20 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      */
+    /**
+     * @Assert\Date
+     * @var string A "Y-m-d" formatted value
+     */
     private $visitDate;
 
     /**
      * @ORM\Column(type="string", length=255)
+     */
+     /**
+     * @Assert\Email(
+     *     message = "L'email '{{ value }}' n'est pas valide.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -39,7 +50,7 @@ class Booking
     private $commandId;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $totalPrice;
 
@@ -47,6 +58,11 @@ class Booking
      * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="booking", cascade={"persist","remove"})
      */
     private $tickets;
+
+    /**
+    * @ORM\Column(type="integer")
+    */
+    private $nbTickets;
 
     public function __construct()
     {
@@ -148,4 +164,17 @@ class Booking
 
         return $this;
     }
+
+    public function getNbTickets(): ?int
+    {
+        return $this->nbTickets;
+    }
+
+    public function setNbTickets(int $nbTickets): self
+    {
+        $this->nbTickets = $nbTickets;
+
+        return $this;
+    }
+
 }
