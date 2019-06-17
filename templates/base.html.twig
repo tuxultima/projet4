@@ -2,11 +2,26 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        <title>{% block title %}Billeterie du louvre{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    <body style="background-color: #331107;" type="text/css">
+    	<div class="container border bg-light rounded col-lg-4 p-4 mt-4">
+    		<h1>Billeterie du louvre</h1>
+    		<p>Réservez votre ticket d'entrée pour le Louvre en ligne !</p>
+            <div class="row p-4 ">
+		        {% block body %}{% endblock %}
+		{% block javascripts %}
+		{% endblock %}
+		    </div>
+		    <em>*Tarif de base (à partir de 12 ans et +) : 16€.<br>
+		    	*Tarif enfant (de 4 ans jusqu'à 12 ans) : 8€.<br>
+		    	*Tarif senior (à partir de 60 ans) : 12€.<br>
+		    	*Tarif réduit (étudiant, militaire, employé du musée etc...) 10€.<br>
+		    	*Tarif enfant de moins de 4 ans : gratuit.</em>
+		</div>
+
     </body>
 </html>

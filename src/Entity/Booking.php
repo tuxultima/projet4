@@ -23,8 +23,10 @@ class Booking
      * @ORM\Column(type="datetime")
      */
     /**
-     * @Assert\Date
+     * @Assert\NotBlank
+     * @Assert\GreaterThanOrEqual("today", message= "Impossible de réverser pour une date passée")
      * @var string A "Y-m-d" formatted value
+     * 
      */
     private $visitDate;
 
@@ -62,6 +64,12 @@ class Booking
     /**
     * @ORM\Column(type="integer")
     */
+         /**
+     * @Assert\GreaterThan(
+     *     value = 0,
+     *     message = "Le nombre de ticket '{{ value }}' n'est pas valide."
+     * )
+     */
     private $nbTickets;
 
     public function __construct()

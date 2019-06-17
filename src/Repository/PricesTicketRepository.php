@@ -22,7 +22,7 @@ class PricesTicketRepository extends ServiceEntityRepository
     // /**
     //  * @return PricesTicket[] Returns an array of PricesTicket objects
     //  */
-    /*
+ 
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('p')
@@ -34,7 +34,7 @@ class PricesTicketRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+ 
 
     /*
     public function findOneBySomeField($value): ?PricesTicket

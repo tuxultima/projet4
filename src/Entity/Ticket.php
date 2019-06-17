@@ -19,10 +19,32 @@ class Ticket
     /**
      * @ORM\Column(type="string", length=255)
      */
+    /**
+     * @Assert\NotBlank(message = "Veuillez indiquer votre prénom.")
+     */
+    /**
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 50,
+     *     minMessage = "Veuillez indiquer un prénom correct.",
+     *     maxMessage = "Vous avez dépassé 50 caractères, un seul prénom s'il vous plaît."
+     * )
+     */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     */
+        /**
+     * @Assert\NotBlank(message = "Veuillez indiquer votre nom de famille.")
+     */
+    /**
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 50,
+     *     minMessage = "Veuillez indiquer un nom de famille correct.",
+     *     maxMessage = "Vous avez dépassé 50 caractères, un seul nom de famille s'il vous plaît."
+     * )
      */
     private $lastname;
 
@@ -34,6 +56,10 @@ class Ticket
     /**
      * @ORM\Column(type="datetime")
      */
+    /*
+    * @Assert\NotBlank(message = "Veuillez indiquez votre date de naissance.")
+    * @var string A "Y-m-d" formatted value
+    */
     private $birthday;
 
     /**

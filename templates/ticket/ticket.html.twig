@@ -1,21 +1,35 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	</head>
-	<body>
-		<div class="container">
-            <div class="row">
-				{{ form_start(form, {'class':'col-lg-5'} ) }}
-					 {{ form_row(form.firstname) }}
-		             {{ form_row(form.lastname) }}
-		             {{ form_row(form.country) }}
-		             {{ form_row(form.birthday) }}
-		             {{ form_row(form.discount) }}
+{% extends 'base.html.twig' %}
+{% block body %}
+{{form_start(form, {'attr':{ 'novalidate': 'novalidate'}})}}
+{{form_label(form.firstname, 'Votre prénom')}}
+{{form_widget(form.firstname)}}
+{{form_errors(form.firstname)}}
+{{form_label(form.lastname, 'Votre nom de famille')}}
+{{form_widget(form.lastname)}}
+{{form_errors(form.lastname)}}
+{{form_label(form.country, 'De quel pays venez-vous ?')}}
+{{form_widget(form.country)}}
+{{form_label(form.birthday, 'Votre date de naissance')}}
+{{form_widget(form.birthday)}}
+{{form_errors(form.birthday)}}
+{{form_label(form.discount, 'Avez-vous un tarif réduit ?')}}
+{{form_widget(form.discount)}}
+{{form_errors(form.discount)}}
+{{form_end(form)}}
 
-		            <button type="submit" class="btn btn-primary">Envoyer</button>
-		        {{ form_end(form) }}
-		    </div>
-		</div>
-	</body>
-</html>
+{% endblock %}
+{% block javascripts %}
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.fr.min.js"></script>
+		<script>
+			 $(document).ready(function() {
+		        // you may need to change this code if you are not using Bootstrap Datepicker
+		        $('.js-datepicker').datepicker({
+		            format: 'dd-mm-yyyy',
+					language: 'fr',					
+		        });
+		    });
+		</script>
+{% endblock %}

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Booking;
 use App\Form\BookingType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Repository\PricesTicketRepository;
 
 
 class HomeController extends AbstractController
@@ -16,20 +17,22 @@ class HomeController extends AbstractController
 	/**
     * @Route("/", name="homepage")
     */
-    public function home(Request $request, SessionInterface $session)
+    public function home(Request $request, SessionInterface $session, PricesTicketRepository $price)
     {
+     //   $prices = $price->findByExampleField();
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-        	$session->set('booking', $booking);
+            $session->set('booking', $booking);
         	return $this->redirectToRoute('ticket');
         }
 
 
         return $this->render('home/home.html.twig', array(
             'form' => $form->createView(),
+    //        'price' =>$prices
         ));
 
         
