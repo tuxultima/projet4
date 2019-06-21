@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\TicketType;
 use App\Entity\Ticket;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use App\Form\FormHandler\TicketTypeHandler;
 
 class TicketController extends AbstractController
 {
@@ -21,11 +23,14 @@ class TicketController extends AbstractController
 	/**
     * @Route("/info-ticket", name="ticket")
     */
-    public function ticket(Request $request, SessionInterface $session)
+    public function ticket(Request $request, SessionInterface $session, TicketTypeHandler $handler)
     {
-    	dump($session->get('booking'));
-        $ticket = new Ticket();
-        $ticketform = $this->createForm(TicketType::class, $ticket);
+    	$booking = $session->get('booking');
+        
+        $ticket=$handler->ticketNumber($booking);
+        $ticketform = $this->createForm(CollectionType::class, $ticket,[
+            'entry_type' => TicketType::class
+        ]);
 
           $ticketform->handleRequest($request);
 
@@ -35,6 +40,7 @@ class TicketController extends AbstractController
 
         return $this->render('ticket/ticket.html.twig', array(
             'form' => $ticketform->createView(),
+            'booking' => $booking
         ));
 
         

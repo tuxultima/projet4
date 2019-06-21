@@ -13,8 +13,7 @@
     		<p>Réservez votre ticket d'entrée pour le Louvre en ligne !</p>
             <div class="row p-4 ">
 		        {% block body %}{% endblock %}
-		{% block javascripts %}
-		{% endblock %}
+		
 		    </div>
 		    <em>*Tarif de base (à partir de 12 ans et +) : 16€.<br>
 		    	*Tarif enfant (de 4 ans jusqu'à 12 ans) : 8€.<br>
@@ -22,6 +21,9 @@
 		    	*Tarif réduit (étudiant, militaire, employé du musée etc...) 10€.<br>
 		    	*Tarif enfant de moins de 4 ans : gratuit.</em>
 		</div>
-
+				{% block javascripts %}
+				<script src="http://code.jquery.com/jquery.js"></script>
+				<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+				{% endblock %}
     </body>
 </html>
